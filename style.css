@@ -1,0 +1,71 @@
+/* CSS-Neutral färgpalett för en tidlös lugn look */
+:root {
+    color-scheme: light;
+    --ink: #725d3f;
+    --paper: #faf4e5;
+    --backdrop: #c7c3b0;
+}
+/* AI-genererad bild */
+body {
+    background: var(--backdrop) url("cookie-pattern-background.png") center center / cover no-repeat fixed;
+    color: var(--ink);
+    font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+}
+a { color: inherit; }
+.recipe-card { position: relative; padding: 48px; }
+main>section:first-of-type, .recipe {
+    position: relative; z-index: 0; background-color: var(--paper);
+    border-radius: 16px; overflow: visible;
+}
+/* CSS-Vågig ram för att pappers-sektionen ska likna en kaka */
+main>section:first-of-type::before, .recipe::before {
+    content: ""; position: absolute; z-index: -1; inset: -18px; border-radius: 16px;
+    background:
+      radial-gradient(circle at 50% 100%, var(--paper) 0 20px, transparent 20.5px) 0 0 / 40px 26px repeat-x,
+      radial-gradient(circle at 50% 0, var(--paper) 0 20px, transparent 20.5px) 0 100% / 40px 26px repeat-x,
+      radial-gradient(circle at 100% 50%, var(--paper) 0 20px, transparent 20.5px) 0 0 / 26px 40px repeat-y,
+      radial-gradient(circle at 0 50%, var(--paper) 0 20px, transparent 20.5px) 100% 0 / 26px 40px repeat-y;
+    pointer-events: none;
+}
+main>section:first-of-type { padding: 48px 120px; text-align: center; }
+.recipe { padding: 48px 120px; }
+main { display: grid; gap: 48px; width: min(900px, 100%); margin: 0 auto; }
+main>section:last-of-type { display: grid; gap: 48px; padding-bottom: 48px; }
+main>section:first-of-type> :not(.cookie-photo-frame), .recipe> :not(.recipe-photo-frame) { margin-left: 40px; }
+.recipe ul, .recipe ol { padding-left: 0; list-style-position: inside; }
+.recipe-photo-frame { display: flex; justify-content: center; }
+.recipe-ingredients { display: flex; align-items: center; flex-wrap: wrap; gap: 0.25rem; }
+#finska-pinnar .recipe-ingredients, #schackrutor .recipe-ingredients {
+    box-sizing: border-box; justify-content: flex-start;
+}
+.site-header {
+    position: absolute; z-index: 2; top: 72px; left: 172px;
+    display: flex; align-items: center; min-height: 2.5rem;
+}
+.menu { position: relative; }
+.menu summary { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.95rem; list-style: none; cursor: pointer; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary svg { width: 2.5rem; height: 2.5rem; overflow: visible; }
+img { border-radius: 10px; }
+.cloche-lid { transform-box: view-box; transform-origin: 25px 19px; transition: transform 300ms ease; }
+.menu[open] .cloche-lid { transform: translate(2px, -2px) rotate(35deg); }
+.menu-list {
+    position: absolute; z-index: 1; top: calc(100% + 0.65rem); left: 0;
+    display: grid; min-width: 210px; margin: 0; padding: 0.45rem;
+    background-color: var(--paper); border: 1px solid #ede3ce; border-radius: 8px;
+    box-shadow: 0 8px 24px rgb(87 67 49 / 13%); list-style: none;
+}
+.menu-list a { display: block; padding: 0.6rem 0.75rem; border-radius: 5px; text-decoration: none; }
+.menu-list a:hover, .menu-list a:focus-visible { background-color: #ede3ce; }
+/* CSS-Meny ikon ser ut som ett kakfat */
+
+/* Responsiv anpassning för mindre skärmar */
+@media (max-width: 700px) {
+    .recipe-card { padding: 28px 18px; }
+    main { gap: 32px; }
+    main > section:first-of-type, .recipe { padding: 32px 24px; }
+    main > section:first-of-type > :not(.cookie-photo-frame), .recipe > :not(.recipe-photo-frame) { margin-left: 0; }
+    .site-header { position: relative; top: auto; left: auto; margin: 0 0 24px 8px; }
+    .recipe-ingredients { align-items: flex-start; }
+    .recipe-photo-frame img, .cookie-photo-frame img { max-width: 100%; height: auto; }
+}
